@@ -1,0 +1,248 @@
+<section
+  class="relative bg-black w-full min-h-[80vh] md:min-h-screen pb-4 md:pb-8"
+>
+  <div class="mx-auto max-w-7xl p-6 md:p-10">
+    <!-- Logo and Navigation -->
+
+    <!-- Main Content -->
+    <div
+      class="relative z-20 flex flex-col md:flex-row justify-between items-center md:mt-[168px] mt-30"
+    >
+      <div
+        class="flex flex-col items-center text-center md:items-start md:text-left md:block"
+        data-aos="fade-right"
+        data-aos-duration="1200"
+      >
+        <h1
+          class="font-montserrat text-2xl md:text-4xl lg:text-5xl font-bold leading-tight text-white"
+        >
+          Hi, I'm Bohdan!
+        </h1>
+        <p
+          class="font-montserrat mt-5 text-[36px] sm:text-4xl md:text-7xl lg:text-8xl text-white font-bold"
+        >
+          a web developer
+        </p>
+        <div class="mt-5 text-white md:text-xl text-lg font-[300] font-roboto">
+          I specialize in building fast, accessible,<br /> and scalable web applications.
+        </div>
+        <div
+          class="flex flex-col items-center md:items-start gap-3 lg:gap-0 lg:mt-8 mt-8"
+        >
+          <!-- Contact me button (expand from left to right) -->
+          <button
+            class="relative lg:mt-10 h-17 lg:h-30 w-full max-w-[260px] lg:max-w-none lg:w-auto"
+          >
+            <a
+              href="#contact"
+              class="group flex items-center justify-center lg:justify-start"
+            >
+              <!-- Mobile stretched button (less than lg) -->
+              <span
+                class="absolute z-0 flex items-center justify-center w-full h-full bg-[#747474] rounded-full lg:w-[87px] lg:h-[87px]
+                lg:transition-all lg:duration-300 lg:ease-in-out
+                lg:group-hover:w-[220px] lg:origin-left"
+              >
+              </span>
+              <span
+                class="relative z-10 flex items-center justify-center gap-2 text-white lg:font-medium whitespace-nowrap px-8 w-full lg:w-[273px]"
+              >
+                <span class="text-xl">Contact me</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="ml-1 hidden lg:block"
+                >
+                  <path d="M5 12h10"></path>
+                  <path d="M15 7c2.5 2.5 5 5 5 5s-2.5 2.5-5 5"></path>
+                </svg>
+              </span>
+            </a>
+          </button>
+
+          <!-- See my works button (expand from right to left) -->
+          <button
+            class="relative lg:mt-4 h-17 lg:h-[87px] w-full max-w-[260px] lg:max-w-none lg:w-auto"
+          >
+            <a
+              href="#projects"
+              class="group flex items-center justify-center lg:justify-end w-full lg:w-[220px]"
+            >
+              <span
+                class="absolute z-0 lg:right-0 flex items-center justify-center w-full h-full bg-[#747474] rounded-full lg:w-[87px] lg:h-[87px]
+                lg:transition-all lg:duration-300 lg:ease-in-out
+                lg:group-hover:w-[220px] lg:origin-right"
+              >
+              </span>
+              <span
+                class="relative z-10 flex items-center justify-center gap-2 text-white lg:font-medium whitespace-nowrap px-8 w-full lg:w-[220px]"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="mr-1 hidden lg:block"
+                >
+                  <path d="M19 12H9"></path>
+                  <path d="M9 7c-2.5 2.5-5 5-5 5s2.5 2.5 5 5"></path>
+                </svg>
+                <span class="text-xl">See my works</span>
+              </span>
+            </a>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Desktop avatar image (hidden on mobile) -->
+    <div
+      class="absolute top-30 right-80 overflow-hidden z-10 hidden xl:block"
+      data-aos="fade-left"
+      data-aos-duration="1200"
+    >
+      <img
+        src="/avatar.png"
+        alt="My Photo"
+        class="w-full h-full object-cover"
+      />
+      <!-- Gradient overlay -->
+      <div
+        class="absolute inset-0 bg-gradient-to-tr from-black via-black/30 to-transparent"
+      >
+      </div>
+    </div>
+
+    <!-- Mobile full-width background image -->
+    <div class="absolute inset-0 w-full h-full z-0 xl:hidden">
+      <img
+        src="/avatar2.jpg"
+        alt="Background"
+        class="w-full h-full object-cover opacity-30"
+      />
+      <!-- Stronger gradient overlay for text visibility -->
+      <div
+        class="absolute inset-0 bg-gradient-to-b from-black via-black/60 to-black/60"
+      >
+      </div>
+    </div>
+
+    <!-- Social Links -->
+    <div class="absolute bottom-10 left-10 hidden md:block">
+      <ul class="flex items-center gap-5 text-white text-sm">
+        <li>
+          <a href="#" class="hover:text-gray-900">Dribbble</a>
+        </li>
+        <li class="">/</li>
+        <li>
+          <a href="#" class="hover:text-gray-900">Behance</a>
+        </li>
+        <li>/</li>
+        <li>
+          <a href="#" class="hover:text-gray-900">GitHub</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Vertical Text -->
+    <div
+      class="absolute right-10 bottom-32 origin-bottom-right rotate-90 hidden md:flex items-center gap-1 text-white"
+    >
+      <a
+        href="#about"
+        class="uppercase text-xs tracking-widest hover:text-gray-300 transition-colors duration-300 cursor-pointer"
+        id="scroll-down-btn"
+      >
+        scroll down
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  import AOS from 'aos';
+  document.addEventListener('DOMContentLoaded', function () {
+    AOS.init({
+      duration: 1000,
+      once: true,
+    });
+    const scrollDownBtn = document.getElementById('scroll-down-btn');
+
+    // smooth "scroll down"
+    if (scrollDownBtn) {
+      scrollDownBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        const targetSection = document.querySelector('#about') as HTMLElement;
+
+        if (targetSection) {
+          const headerHeight = 80;
+          const targetPosition = targetSection.offsetTop - headerHeight;
+          const startPosition = window.pageYOffset;
+          const distance = targetPosition - startPosition;
+          const duration = 1500; // 1.5 секунды - медленнее
+          let start: number | null = null;
+
+          function animation(currentTime: number) {
+            if (start === null) start = currentTime;
+            const timeElapsed = currentTime - start;
+            const run = ease(timeElapsed, startPosition, distance, duration);
+            window.scrollTo(0, run);
+            if (timeElapsed < duration) requestAnimationFrame(animation);
+          }
+
+          // Easing функция для плавности
+          function ease(t: number, b: number, c: number, d: number) {
+            t /= d / 2;
+            if (t < 1) return (c / 2) * t * t + b;
+            t--;
+            return (-c / 2) * (t * (t - 2) - 1) + b;
+          }
+
+          requestAnimationFrame(animation);
+        }
+      });
+    }
+
+    // Плавная прокрутка для кнопок Contact me и See my works
+    const heroButtons = document.querySelectorAll('section a[href^="#"]');
+
+    heroButtons.forEach((button) => {
+      button.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        const targetId = (e.currentTarget as HTMLAnchorElement).getAttribute(
+          'href'
+        );
+        const targetSection = document.querySelector(
+          targetId || ''
+        ) as HTMLElement;
+
+        if (targetSection) {
+          const headerHeight = 80;
+          const targetPosition = targetSection.offsetTop - headerHeight;
+
+          // Убираем фокус с кнопки
+          (e.currentTarget as HTMLAnchorElement).blur();
+
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth',
+          });
+        }
+      });
+    });
+  });
+</script>
