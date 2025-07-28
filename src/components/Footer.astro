@@ -1,3 +1,7 @@
+---
+const year = new Date().getFullYear();
+---
+
 <footer class="bg-black text-white border-t border-gray-800">
   <div class="max-w-7xl mx-auto px-6 lg:px-10 py-12">
     <!-- Main Footer Content -->
@@ -135,7 +139,7 @@
               ></path>
             </svg>
             <a
-              href="karamanets.bogdan@gmail.com"
+              href="mailto:karamanets.bogdan@gmail.com"
               class="text-gray-400 hover:text-white transition-colors duration-200"
               >karamanets.bogdan@gmail.com</a
             >
@@ -169,16 +173,16 @@
     <div class="border-t border-gray-800 mt-12 pt-8">
       <div class="flex flex-col md:flex-row justify-between items-center gap-4">
         <div class="text-gray-400 text-sm">
-          © {new Date().getFullYear()} Bohdan. All rights reserved.
+          © {year} Bohdan. All rights reserved.
         </div>
         <div class="flex items-center gap-6 text-sm">
           <a
-            href="#"
+            href="/privacy"
             class="text-gray-400 hover:text-white transition-colors duration-200"
             >Privacy Policy</a
           >
           <a
-            href="#"
+            href="/terms-of-service"
             class="text-gray-400 hover:text-white transition-colors duration-200"
             >Terms of Service</a
           >
@@ -189,27 +193,31 @@
 </footer>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function () {
     // Находим все ссылки с якорями в footer
     const footerLinks = document.querySelectorAll('footer a[href^="#"]');
-    
-    footerLinks.forEach(link => {
-      link.addEventListener('click', function(e) {
+
+    footerLinks.forEach((link) => {
+      link.addEventListener('click', function (e) {
         e.preventDefault();
-        
-        const targetId = (e.currentTarget as HTMLAnchorElement).getAttribute('href');
-        const targetSection = document.querySelector(targetId || '') as HTMLElement;
-        
+
+        const targetId = (e.currentTarget as HTMLAnchorElement).getAttribute(
+          'href'
+        );
+        const targetSection = document.querySelector(
+          targetId || ''
+        ) as HTMLElement;
+
         if (targetSection) {
           const headerHeight = 80; // Высота фиксированного header
           const targetPosition = targetSection.offsetTop - headerHeight;
-          
+
           // Убираем фокус с ссылки
           (e.currentTarget as HTMLAnchorElement).blur();
-          
+
           window.scrollTo({
             top: targetPosition,
-            behavior: 'smooth'
+            behavior: 'smooth',
           });
         }
       });

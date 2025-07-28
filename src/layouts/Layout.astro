@@ -1,6 +1,14 @@
 ---
 import Header from '../components/Header.astro';
 import '../styles/global.css';
+
+// SEO props
+const {
+  title = 'Bohdan Karamanets | Web Developer Portfolio',
+  description = 'Portfolio of Bohdan Karamanets, web developer. Modern, fast, and visually striking websites for personal brands and businesses.',
+  image = '/avatar.png',
+  url = 'https://your-domain.com/', // замените на ваш домен
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -17,10 +25,30 @@ import '../styles/global.css';
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>Astro Basics</title>
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={url} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
   </head>
   <body>
-    <Header />
+    {
+      Astro.url.pathname === '/privacy' ||
+      Astro.url.pathname === '/terms-of-service' ? (
+        <Header minimal={true} backHref="/" />
+      ) : (
+        <Header />
+      )
+    }
     <slot />
   </body>
 </html>
