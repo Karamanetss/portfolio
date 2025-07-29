@@ -1,0 +1,51 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>
+  <section
+    class="fixed inset-0 flex items-center justify-center w-screen h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-700"
+  >
+    <div
+      class="w-full max-w-3xl text-center px-6 sm:px-12 py-16 rounded-3xl shadow-2xl border border-gray-200/30 bg-white/90 backdrop-blur-lg flex flex-col items-center gap-4"
+    >
+      <div class="flex flex-col items-center mb-4">
+        <svg
+          class="w-20 h-20 text-yellow-400 mb-2 animate-bounce drop-shadow-lg"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          viewBox="0 0 48 48"
+        >
+          <circle
+            cx="24"
+            cy="24"
+            r="22"
+            stroke="currentColor"
+            stroke-width="3"
+            fill="#fffbe8"></circle>
+          <path
+            d="M16 30c1.5-2 5.5-2 7.5 0s6 2 7.5 0"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"></path>
+          <circle cx="18" cy="20" r="2" fill="currentColor"></circle>
+          <circle cx="30" cy="20" r="2" fill="currentColor"></circle>
+        </svg>
+        <h1 class="text-[15vw] sm:text-8xl font-extrabold">404</h1>
+      </div>
+      <h2 class="text-2xl sm:text-4xl font-bold mb-2">Oops! Page not found</h2>
+      <p class="text-base sm:text-lg mb-6 font-light max-w-xl">
+        The page you are looking for might have been moved or does not exist.<br
+        />
+        Try going back to the homepage.
+      </p>
+      <button
+        onclick="location.href='/'"
+        class="px-8 py-4 bg-white text-black font-bold rounded-full border transition-all duration-200 hover:scale-105 active:scale-95"
+      >
+        Go Home
+      </button>
+    </div>
+  </section>
+</Layout>
