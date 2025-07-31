@@ -30,11 +30,13 @@ const projects = [
 <section id="projects" class="py-12 lg:py-20 bg-white">
   <div class="mx-auto max-w-[1280px] w-full px-4 sm:px-6">
     <div class="mb-12" data-aos="fade-up">
-      <p class="text-2xl sm:text-3xl text-center mb-2 text-black font-light">
+      <p
+        class="text-2xl sm:text-3xl md:text-start text-center mb-2 text-black font-light"
+      >
         Portfolio
       </p>
       <h2
-        class="text-4xl sm:text-5xl lg:text-6xl mb-5 text-center font-bold font-montserrat text-black"
+        class="md:text-start text-center text-4xl sm:text-5xl lg:text-6xl mb-5 font-bold font-montserrat text-black"
       >
         My recent work
       </h2>
@@ -43,8 +45,8 @@ const projects = [
       {
         projects.map((project) => (
           <div class="keen-slider__slide flex justify-center">
-            <div class="rounded-2xl border border-gray-200 bg-white shadow hover:shadow-lg transition-shadow overflow-hidden flex flex-col w-[320px] sm:w-[360px] md:w-[400px]">
-              <div class="h-[200px] sm:h-[220px] w-full bg-gradient-to-br from-orange-600 to-black flex items-center justify-center overflow-hidden">
+            <div class="rounded-2xl border border-gray-200 bg-white shadow hover:shadow-lg transition-shadow overflow-hidden flex flex-col w-full max-w-[320px] sm:max-w-[360px] md:max-w-[400px]">
+              <div class="h-[180px] sm:h-[200px] md:h-[220px] w-full bg-gradient-to-br from-orange-600 to-black flex items-center justify-center overflow-hidden">
                 <img
                   src={project.image}
                   alt={project.title}
@@ -63,99 +65,33 @@ const projects = [
           </div>
         ))
       }
+    </div>
+  </div>
 
-    <!-- Custom scrollbar -->
-    <div id="slider-scrollbar" class="relative mt-6 h-3 w-full max-w-xl mx-auto select-none">
-      <div class="absolute left-0 top-1/2 -translate-y-1/2 w-full h-2 bg-gray-200 rounded-full"></div>
-      <div id="slider-scrollbar-thumb" class="absolute left-0 top-1/2 -translate-y-1/2 h-2 bg-black rounded-full transition-all duration-200" style="width: 80px;"></div>
-</div>
-<!-- Custom scrollbar -->
-<div id="slider-scrollbar" class="relative mt-6 h-3 w-full max-w-xl mx-auto select-none">
-  <div class="absolute left-0 top-1/2 -translate-y-1/2 w-full h-2 bg-gray-200 rounded-full"></div>
-  <div id="slider-scrollbar-thumb" class="absolute left-0 top-1/2 -translate-y-1/2 h-2 bg-black rounded-full transition-all duration-200" style="width: 80px;"></div>
-</div>
-
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/keen-slider@6.8.5/keen-slider.min.css"
-/>
-<script
-  src="https://cdn.jsdelivr.net/npm/keen-slider@6.8.5/keen-slider.min.js"
-></script>
-<style>
-  #slider-scrollbar {
-    user-select: none;
-    touch-action: none;
-  }
-  #slider-scrollbar-thumb {
-    min-width: 48px;
-    background: linear-gradient(90deg, #ff9800 0%, #000 100%);
-    box-shadow: 0 2px 8px 0 rgba(0,0,0,0.10);
-    cursor: pointer;
-  }
-  #slider-scrollbar-thumb:active {
-    background: linear-gradient(90deg, #ffb74d 0%, #333 100%);
-  }
-</style>
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    // @ts-ignore
-    var slider = new KeenSlider('#my-keen-slider', {
-      slides: {
-        perView: 3,
-        spacing: 15,
-      },
-    });
-
-    // Custom scrollbar logic
-    const scrollbar = document.getElementById('slider-scrollbar');
-    const thumb = document.getElementById('slider-scrollbar-thumb');
-    function updateScrollbar() {
-      if (!slider || !slider.track || !slider.track.details || !scrollbar || !thumb) return;
-      const details = slider.track.details;
-      const percent = details.progress;
-      const slidesLength = details.slides.length;
-      const perView = details.slidesPerView;
-      const max = slidesLength - perView;
-      const trackWidth = scrollbar.offsetWidth;
-      const thumbWidth = Math.max(trackWidth * (perView / slidesLength), 48);
-      const left = percent * (trackWidth - thumbWidth);
-      thumb.style.width = thumbWidth + 'px';
-      thumb.style.left = left + 'px';
-    }
-    slider.on('created', updateScrollbar);
-    slider.on('slideChanged', updateScrollbar);
-    slider.on('updated', updateScrollbar);
-
-    // Drag logic
-    let isDragging = false;
-    let dragStartX = 0;
-    let dragStartScroll = 0;
-    if (thumb) {
-      thumb.addEventListener('pointerdown', (e) => {
-        isDragging = true;
-        dragStartX = e.clientX;
-        dragStartScroll = slider.track.details.progress;
-        document.body.style.userSelect = 'none';
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/keen-slider@6.8.5/keen-slider.min.css"
+  />
+  <script
+    src="https://cdn.jsdelivr.net/npm/keen-slider@6.8.5/keen-slider.min.js"
+  ></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // @ts-ignore
+      var slider = new KeenSlider('#my-keen-slider', {
+        slides: {
+          perView: 1.25,
+          spacing: 1.2,
+        },
+        breakpoints: {
+          '(min-width: 640px)': {
+            slides: { perView: 2, spacing: 2 },
+          },
+          '(min-width: 1024px)': {
+            slides: { perView: 3, spacing: 2 },
+          },
+        },
       });
-    }
-    window.addEventListener('pointermove', (e) => {
-      if (!isDragging || !scrollbar || !thumb) return;
-      const trackWidth = scrollbar.offsetWidth;
-      const slidesLength = slider.track.details.slides.length;
-      const perView = slider.track.details.slidesPerView;
-      const thumbWidth = Math.max(trackWidth * (perView / slidesLength), 48);
-      const maxScroll = trackWidth - thumbWidth;
-      let delta = e.clientX - dragStartX;
-      let percent = (dragStartScroll * maxScroll + delta) / maxScroll;
-      percent = Math.max(0, Math.min(1, percent));
-      const maxIdx = slidesLength - perView;
-      slider.moveToIdx(Math.round(percent * maxIdx));
     });
-    window.addEventListener('pointerup', () => {
-      isDragging = false;
-      document.body.style.userSelect = '';
-    });
-  });
-</script>
+  </script>
 </section>
