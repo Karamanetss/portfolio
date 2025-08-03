@@ -1,0 +1,96 @@
+---
+const testimonials = [
+  {
+    id: 1,
+    text: '“Working with Bohdan was a pleasure. He delivered our landing page ahead of schedule and exceeded our expectations in design and performance.”',
+    author: 'Anna Müller, Marketing Lead',
+  },
+  {
+    id: 2,
+    text: '“Bohdan is a true professional. Communication was smooth, and the final product helped us increase our conversion rate by 30%.”',
+    author: 'Maximilian Schulz, CEO, Factual',
+  },
+  {
+    id: 3,
+    text: '“We needed a fast, modern website for our startup. Bohdan understood our needs and delivered a pixel-perfect result. Highly recommended!”',
+    author: 'Sophie Becker, Founder, Matrixian',
+  },
+  {
+    id: 4,
+    text: '“The new site looks amazing and works flawlessly on all devices. Bohdan’s attention to detail and creative approach made all the difference.”',
+    author: 'Jonas Weber, Product Manager',
+  },
+  {
+    id: 5,
+    text: '“From the first call to launch, Bohdan was responsive and proactive. We will definitely work together again!”',
+    author: 'Lena Hoffmann, COO',
+  },
+];
+---
+
+<section id="testimonials" class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-5">
+    <div
+      class="text-3xl md:text-[36px] md:text-start text-center mb-15 text-black font-light"
+      data-aos="fade-up"
+    >
+      <p
+        class="text-2xl sm:text-3xl mb-2 text-black font-light text-center md:text-start"
+      >
+        Testimonial
+      </p>
+      <h2
+        class="text-4xl sm:text-5xl lg:text-6xl xl:text-[90px] md:text-start text-center font-bold font-montserrat text-black"
+      >
+        Client feedback
+      </h2>
+    </div>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/keen-slider@6.8.5/keen-slider.min.css"
+    />
+    <div data-aos="fade-up" class="keen-slider" id="testimonials-slider">
+      {
+        testimonials.map((item) => (
+          <div class="keen-slider__slide flex flex-col items-center px-6">
+            <span class="text-5xl text-black flex justify-center w-full ">
+              &ldquo;
+            </span>
+            <p class="text-lg text-black font-light text-center max-w-2xl mb-6">
+              {item.text}
+            </p>
+            <hr class="w-16 border-black mb-2" />
+            <p class="font-montserrat font-bold text-black text-lg">
+              {item.author}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/keen-slider@6.8.5/keen-slider.min.js"
+    ></script>
+    <script is:inline>
+      document.addEventListener('DOMContentLoaded', function () {
+        const slider = document.querySelector('#testimonials-slider');
+        if (slider) {
+          new KeenSlider(slider, {
+            loop: true,
+            slides: {
+              perView: 1,
+              spacing: 15,
+            },
+            breakpoints: {
+              '(min-width: 640px)': {
+                slides: { perView: 2, spacing: 15 },
+              },
+              '(min-width: 1024px)': {
+                slides: { perView: 3, spacing: 15 },
+              },
+            },
+          });
+        }
+      });
+    </script>
+  </div>
+</section>
