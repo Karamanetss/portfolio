@@ -1,50 +1,5 @@
 ---
-const pricingPlans = [
-  {
-    title: 'Basic',
-    description: 'Perfect for simple websites / personal brands',
-    price: 'From 299€',
-    features: [
-      'Custom design based on template',
-      'Up to 3 content blocks (e.g. Hero, About, Contact)',
-      'Fully responsive layout',
-      'Basic SEO (meta tags, clean structure)',
-      '1 contact form',
-    ],
-    delivery: '~5 business days',
-    highlighted: false,
-  },
-  {
-    title: 'Standard',
-    description: 'Ideal for small businesses',
-    price: 'From 700€',
-    features: [
-      'Unique custom design',
-      '5–7 content blocks',
-      'Advanced responsive layout',
-      'Full on-page SEO (structure, keywords)',
-      'Up to 3 forms or lead quizzes',
-      'Google Analytics integration',
-    ],
-    delivery: '7–10 business days',
-    highlighted: true,
-  },
-  {
-    title: 'Premium',
-    description: 'For high-converting, dynamic landing pages',
-    price: 'From 1500€',
-    features: [
-      'Exclusive design tailored from scratch',
-      'Unlimited content sections',
-      'Advanced animations & interactive UI',
-      'Deep SEO strategy',
-      'Forms + CRM integration (e.g., HubSpot, Salesforce)',
-      'A/B testing setup (optional)',
-    ],
-    delivery: 'From 14 business days (based on scope)',
-    highlighted: false,
-  },
-];
+const { pricingPlans = [], subtitle = '', title = '' } = Astro.props;
 ---
 
 <section class="py-10 lg:py-20 bg-white" id="pricing">
@@ -53,70 +8,78 @@ const pricingPlans = [
       <p
         class="text-[36px] font-light text-black text-center lg:text-left mb-2"
       >
-        Pricing
+        {subtitle}
       </p>
-
       <h2
         class="font-montserrat text-4xl sm:text-5xl lg:text-6xl xl:text-[70px] font-bold text-black mb-3 sm:mb-5 text-center lg:text-left"
       >
-        Flexible Plans, pick your plan
+        {title}
       </h2>
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start h-full mt-25">
       {
-        pricingPlans.map((plan) => (
-          <div
-            class={`rounded-2xl p-8 border min-h-[500px] h-full flex flex-col justify-between transition-colors duration-300 ${
-              plan.highlighted
-                ? 'bg-black text-white border-black lg:scale-105'
-                : 'bg-white text-black border-gray-200'
-            }`}
-            data-aos="zoom-in"
-          >
-            <h3 class="text-2xl font-semibold mb-2">{plan.title}</h3>
-            <div class="flex flex-col grow-0">
-              <p
-                class={`mb-6 ${plan.highlighted ? 'text-gray-300' : 'text-gray-600'}`}
+        pricingPlans.map(
+          (plan: {
+            title: string;
+            description: string;
+            price: string;
+            features: string[];
+            delivery: string;
+            highlighted: boolean;
+          }) => (
+            <div
+              class={`rounded-2xl p-8 border min-h-[500px] h-full flex flex-col justify-between transition-colors duration-300 ${
+                plan.highlighted
+                  ? 'bg-black text-white border-black lg:scale-105'
+                  : 'bg-white text-black border-gray-200'
+              }`}
+              data-aos="zoom-in"
+            >
+              <h3 class="text-2xl font-semibold mb-2">{plan.title}</h3>
+              <div class="flex flex-col grow-0">
+                <p
+                  class={`mb-6 ${plan.highlighted ? 'text-gray-300' : 'text-gray-600'}`}
+                >
+                  {plan.description}
+                </p>
+                <div class="flex items-end mb-8">
+                  <span class="text-5xl font-bold">{plan.price}</span>
+                </div>
+              </div>
+
+              <ul class="space-y-4 mb-8 text-left mt-auto">
+                {plan.features.map((feature: string) => (
+                  <li class="flex items-start">
+                    <svg
+                      class={`w-5 h-5 mr-3 mt-1 text-green-500 flex-shrink-0`}
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <button
+                class={`w-full py-3 px-6 rounded-lg font-medium transition-colors 
+              ${plan.highlighted ? 'bg-white text-black hover:bg-gray-200' : 'bg-black text-white hover:bg-gray-800'}`}
               >
-                {plan.description}
-              </p>
-              <div class="flex items-end mb-8">
-                <span class="text-5xl font-bold">{plan.price}</span>
+                Choose Plan
+              </button>
+
+              <div class={`mt-6 text-sm text-center text-gray-500`}>
+                Delivery: {plan.delivery}
               </div>
             </div>
-
-            <ul class="space-y-4 mb-8 text-left mt-auto">
-              {plan.features.map((feature) => (
-                <li class="flex items-start">
-                  <svg
-                    class={`w-5 h-5 mr-3 mt-1 text-green-500 flex-shrink-0`}
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clip-rule="evenodd"
-                    />
-                  </svg>
-                  <span>{feature}</span>
-                </li>
-              ))}
-            </ul>
-
-            <button
-              class={`w-full py-3 px-6 rounded-lg font-medium transition-colors 
-              ${plan.highlighted ? 'bg-white text-black hover:bg-gray-200' : 'bg-black text-white hover:bg-gray-800'}`}
-            >
-              Choose Plan
-            </button>
-
-            <div class={`mt-6 text-sm text-center text-gray-500`}>
-              Delivery: {plan.delivery}
-            </div>
-          </div>
-        ))
+          )
+        )
       }
     </div>
   </div>

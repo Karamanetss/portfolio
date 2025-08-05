@@ -1,5 +1,5 @@
 ---
-// Contact section with adaptive layout and form
+const { title = '', subtitle = '', labels = {} } = Astro.props;
 ---
 
 <section id="contact" class="py-12 lg:py-20 bg-gray-50" data-aos="fade-up">
@@ -8,12 +8,12 @@
       <p
         class="text-2xl sm:text-3xl mb-2 text-black font-light text-center md:text-start"
       >
-        Contact
+        {title}
       </p>
       <h2
         class="text-4xl sm:text-5xl lg:text-6xl mb-5 text-center md:text-start font-bold font-montserrat text-black"
       >
-        Get in Touch with Me!
+        {subtitle}
       </h2>
     </div>
 
@@ -44,10 +44,10 @@
                 stroke-width="2"
                 d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg
             >
-            Location
+            {labels.locationLabel}
           </h3>
           <p class="text-sm text-gray-600">
-            Hamburg, Germany (remote worldwide)
+            {labels.locationValue}
           </p>
         </div>
         <div>
@@ -114,16 +114,16 @@
           netlify-honeypot="bot-field"
           id="contactForm"
           novalidate
+          data-name-required={labels.nameRequired}
+          data-name-min={labels.nameMin}
+          data-email-required={labels.emailRequired}
+          data-email-invalid={labels.emailInvalid}
+          data-message-required={labels.messageRequired}
+          data-message-min={labels.messageMin}
         >
           <input type="hidden" name="form-name" value="contact" />
           <div style="display:none;">
-            <label
-              >Don’t fill this out: <input
-                name="bot-field"
-                autocomplete="off"
-                tabindex="-1"
-              /></label
-            >
+            <label>Don’t fill this out: <input name="bot-field" /></label>
           </div>
           <div class="grid md:grid-cols-2 gap-6">
             <div
@@ -133,7 +133,7 @@
                 <label
                   for="name"
                   class="block text-sm font-medium text-gray-700 mb-2"
-                  >Full Name</label
+                  >{labels.fullName}</label
                 >
                 <input
                   type="text"
@@ -141,7 +141,7 @@
                   name="name"
                   required
                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-1 focus:ring-gray-400 focus:border-gray-400 placeholder-gray-400"
-                  placeholder="Your Name"
+                  placeholder={labels.fullName}
                 />
                 <p
                   id="nameError"
@@ -153,7 +153,7 @@
                 <label
                   for="email"
                   class="block text-sm font-medium text-gray-700 mb-2"
-                  >Email Address</label
+                  >{labels.emailAddress}</label
                 >
                 <input
                   type="email"
@@ -161,7 +161,7 @@
                   name="email"
                   required
                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-1 focus:ring-gray-400 focus:border-gray-400 placeholder-gray-400"
-                  placeholder="you@email.com"
+                  placeholder={labels.emailAddress}
                 />
                 <p
                   id="emailError"
@@ -174,7 +174,7 @@
               <label
                 for="subject"
                 class="block text-sm font-medium text-gray-700 mb-2"
-                >Subject</label
+                >{labels.subject}</label
               >
               <input
                 type="text"
@@ -182,7 +182,7 @@
                 name="subject"
                 required
                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-1 focus:ring-gray-400 focus:border-gray-400 placeholder-gray-400"
-                placeholder="Subject"
+                placeholder={labels.subject}
               />
               <p
                 id="subjectError"
@@ -195,7 +195,7 @@
             <label
               for="message"
               class="block text-sm font-medium text-gray-700 mb-2"
-              >Your Message</label
+              >{labels.yourMessage}</label
             >
             <textarea
               id="message"
@@ -203,14 +203,14 @@
               rows="5"
               required
               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-1 focus:ring-gray-400 focus:border-gray-400 placeholder-gray-400 resize-none"
-              placeholder="Write your message..."></textarea>
+              placeholder={labels.yourMessage}></textarea>
             <p id="messageError" class="text-red-500 text-xs mt-1 min-h-[18px]">
             </p>
           </div>
           <button
             type="submit"
             class="w-full sm:w-auto border-2 border-black text-black px-8 py-3 rounded-full font-medium uppercase hover:bg-black hover:text-white transition-colors"
-            >Send Message</button
+            >{labels.sendMessage}</button
           >
         </form>
         <div
@@ -229,21 +229,16 @@
               stroke-linejoin="round"
               d="M5 13l4 4L19 7"></path></svg
           >
-          <span>Thank you! Your message has been sent.</span>
+          <span>{labels.thankYou}</span>
         </div>
         <script is:inline>
           document.addEventListener('DOMContentLoaded', function () {
             const form = document.getElementById('contactForm');
             const snackbar = document.getElementById('snackbar');
+            const errorMessages = form ? form.dataset : {};
             if (form) {
               form.addEventListener('submit', async function (e) {
                 e.preventDefault();
-                // Honeypot check
-                const botField = form.elements.namedItem('bot-field');
-                if (botField && botField.value) {
-                  // Detected bot/spam, silently ignore
-                  return;
-                }
                 let valid = true;
                 // Name validation
                 const nameInput = form.elements.namedItem('name');
@@ -251,10 +246,12 @@
                 const nameError = document.getElementById('nameError');
                 if (nameError) {
                   if (!name) {
-                    nameError.textContent = 'Full Name is required.';
+                    nameError.textContent =
+                      errorMessages.nameRequired || 'Full Name is required.';
                     valid = false;
                   } else if (name.length < 2) {
                     nameError.textContent =
+                      errorMessages.nameMin ||
                       'Full Name must be at least 2 characters.';
                     valid = false;
                   } else {
@@ -268,11 +265,10 @@
                 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                 if (emailError) {
                   if (!email) {
-                    emailError.textContent = 'Email Address is required.';
+                    emailError.textContent = errorMessages.emailRequired;
                     valid = false;
                   } else if (!emailPattern.test(email)) {
-                    emailError.textContent =
-                      'Please enter a valid email address.';
+                    emailError.textContent = errorMessages.emailInvalid;
                     valid = false;
                   } else {
                     emailError.textContent = '';
@@ -284,11 +280,10 @@
                 const messageError = document.getElementById('messageError');
                 if (messageError) {
                   if (!message) {
-                    messageError.textContent = 'Message is required.';
+                    messageError.textContent = errorMessages.messageRequired;
                     valid = false;
                   } else if (message.length < 10) {
-                    messageError.textContent =
-                      'Message must be at least 10 characters.';
+                    messageError.textContent = errorMessages.messageMin;
                     valid = false;
                   } else {
                     messageError.textContent = '';

@@ -1,31 +1,19 @@
 ---
-const testimonials = [
-  {
-    id: 1,
-    text: '“Working with Bohdan was a pleasure. He delivered our landing page ahead of schedule and exceeded our expectations in design and performance.”',
-    author: 'Anna Müller, Marketing Lead',
-  },
-  {
-    id: 2,
-    text: '“Bohdan is a true professional. Communication was smooth, and the final product helped us increase our conversion rate by 30%.”',
-    author: 'Maximilian Schulz, CEO, Factual',
-  },
-  {
-    id: 3,
-    text: '“We needed a fast, modern website for our startup. Bohdan understood our needs and delivered a pixel-perfect result. Highly recommended!”',
-    author: 'Sophie Becker, Founder, Matrixian',
-  },
-  {
-    id: 4,
-    text: '“The new site looks amazing and works flawlessly on all devices. Bohdan’s attention to detail and creative approach made all the difference.”',
-    author: 'Jonas Weber, Product Manager',
-  },
-  {
-    id: 5,
-    text: '“From the first call to launch, Bohdan was responsive and proactive. We will definitely work together again!”',
-    author: 'Lena Hoffmann, COO',
-  },
-];
+// 👇 Определяем интерфейс для одного элемента, как вы и сделали
+interface Testimonial {
+  id: number;
+  text: string;
+  author: string;
+}
+
+// 👇 Создаем специальный интерфейс `Props`, который Astro сам поймет
+interface Props {
+  testimonials: Testimonial[];
+  title: string;
+  subtitle: string;
+}
+
+const { testimonials = [], title = '', subtitle = '' } = Astro.props;
 ---
 
 <section id="testimonials" class="py-16 bg-white">
@@ -37,12 +25,12 @@ const testimonials = [
       <p
         class="text-2xl sm:text-3xl mb-2 text-black font-light text-center md:text-start"
       >
-        Testimonial
+        {title}
       </p>
       <h2
         class="text-4xl sm:text-5xl lg:text-6xl xl:text-[90px] md:text-start text-center font-bold font-montserrat text-black"
       >
-        Client feedback
+        {subtitle}
       </h2>
     </div>
     <link

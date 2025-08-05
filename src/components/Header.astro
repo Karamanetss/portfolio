@@ -2,8 +2,14 @@
 export interface Props {
   minimal?: boolean;
   backHref?: string;
+  navLabels: {
+    about: string;
+    projects: string;
+    services: string;
+    contact: string;
+  };
 }
-const { minimal = false, backHref = '/' } = Astro.props;
+const { minimal = false, backHref = '/', navLabels = { about: '', projects: '', services: '', contact: '' } } = Astro.props;
 ---
 
 {minimal ? (
@@ -31,14 +37,14 @@ const { minimal = false, backHref = '/' } = Astro.props;
       <a href="/" class="flex items-center">
         <div>Logo</div>
       </a>
-
+      
       <!-- Navigation -->
       <nav class="hidden md:flex space-x-12 text-xl font-regular">
         <a
           href="#about"
           class="relative font-medium text-white flex flex-col items-center group transition-colors duration-300"
         >
-          About
+          {navLabels.about}
           <span
             class="absolute left-1/2 -translate-x-1/2 bottom-[-9px] w-2 h-2 rounded-full bg-white opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 group-focus:opacity-100 group-focus:scale-100 transition-all duration-300"
           ></span>
@@ -47,7 +53,7 @@ const { minimal = false, backHref = '/' } = Astro.props;
           href="#projects"
           class="relative font-medium text-white flex flex-col items-center group transition-colors duration-300"
         >
-          Projects
+          {navLabels.projects}
           <span
             class="absolute left-1/2 -translate-x-1/2 bottom-[-9px] w-2 h-2 rounded-full bg-white opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 group-focus:opacity-100 group-focus:scale-100 transition-all duration-300"
           ></span>
@@ -56,7 +62,7 @@ const { minimal = false, backHref = '/' } = Astro.props;
           href="#services"
           class="relative font-medium text-white flex flex-col items-center group transition-colors duration-300"
         >
-          Services
+          {navLabels.services}
           <span
             class="absolute left-1/2 -translate-x-1/2 bottom-[-9px] w-2 h-2 rounded-full bg-white opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 group-focus:opacity-100 group-focus:scale-100 transition-all duration-300"
           ></span>
@@ -66,46 +72,28 @@ const { minimal = false, backHref = '/' } = Astro.props;
           href="#contact"
           class="relative font-medium text-white flex flex-col items-center group transition-colors duration-300"
         >
-          Contact
+          {navLabels.contact}
           <span
             class="absolute left-1/2 -translate-x-1/2 bottom-[-9px] w-2 h-2 rounded-full bg-white opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 group-focus:opacity-100 group-focus:scale-100 transition-all duration-300"
           ></span>
         </a>
+        <div class="flex space-x-2 ml-6">
+          {Astro.url.pathname === '/de/' ? (
+            <a href="/" class="text-white hover:underline">EN</a>
+          ) : (
+            <a href="/" class="text-white font-bold underline">EN</a>
+          )}
+          <a class="text-white select-none pointer-events-none">|</a>
+          {Astro.url.pathname === '/de/' ? (
+            <a href="/de/" class="text-white font-bold underline">DE</a>
+          ) : (
+            <a href="/de/" class="text-white hover:underline">DE</a>
+          )}
+        </div>
       </nav>
     </div>
 
-    <!-- Mobile menu   -->
-    <div
-      id="mobile-menu"
-      class="pointer-events-none opacity-0 scale-95 md:hidden fixed inset-0 bg-white z-50"
-    >
-      <div class="flex flex-col justify-center items-center h-full gap-8">
-        <a
-          href="#about"
-          class="relative text-gray-900 uppercase font-medium flex flex-col items-center group"
-          >About <span
-            class="w-2 h-2 rounded-full bg-black mt-1 opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 group-focus:opacity-100 group-focus:scale-100 transition-all duration-300"
-          ></span></a>
-        <a
-          href="#projects"
-          class="relative text-gray-900 uppercase font-medium flex flex-col items-center group"
-          >Projects <span
-            class="w-2 h-2 rounded-full bg-black mt-1 opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 group-focus:opacity-100 group-focus:scale-100 transition-all duration-300"
-          ></span></a>
-        <a
-          href="#services"
-          class="relative text-gray-900 uppercase font-medium flex flex-col items-center group"
-          >Services <span
-            class="w-2 h-2 rounded-full bg-black mt-1 opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 group-focus:opacity-100 group-focus:scale-100 transition-all duration-300"
-          ></span></a>
-        <a
-          href="#contact"
-          class="relative text-gray-900 uppercase font-medium flex flex-col items-center group"
-          >Contact <span
-            class="w-2 h-2 rounded-full bg-black mt-1 opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 group-focus:opacity-100 group-focus:scale-100 transition-all duration-300"
-          ></span></a>
-      </div>
-    </div>
+  
   </header>
 )}
 

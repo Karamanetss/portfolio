@@ -1,0 +1,268 @@
+---
+import Hero from '../../components/Hero.astro';
+import About from '../../components/About.astro';
+import Projects from '../../components/Projects.astro';
+import Services from '../../components/Services.astro';
+import Testimonials from '../../components/Testimonials.astro';
+import Pricing from '../../components/Pricing.astro';
+import Contact from '../../components/Contact.astro';
+import Footer from '../../components/Footer.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Bohdan Karamanets | Web Developer Portfolio"
+  description="Portfolio of Bohdan Karamanets, web developer. Modern, fast, and visually striking websites for personal brands and businesses."
+  image="/avatar.png"
+  url="https://your-domain.com/"
+  navLabels={{
+    about: 'Über mich',
+    projects: 'Projekte',
+    services: 'Dienstleistungen',
+    contact: 'Kontakt',
+  }}
+>
+  <Hero
+    title="Hallo, ich bin Bohdan!"
+    subtitle="Ein Webentwickler"
+    description="Ich spezialisiere mich auf schnelle, zugängliche und skalierbare Webanwendungen."
+    contactBtnText="Kontakt"
+    worksBtnText="Mein Portfolio"
+    scrollDownText="runterscrollen"
+  />
+  <About
+    title="Über mich"
+    location="In Deutschland"
+    description="Ich bin Bohdan, Webentwickler aus Deutschland, spezialisiert auf moderne, schnelle und visuell auffällige Websites. Ich helfe Marken und Unternehmen, sich online abzuheben mit sauberem Code, smarten Layouts und mutigem Design. Egal ob Landingpage oder individuelle Lösung, ich verwandle Ideen in reibungslose digitale Erlebnisse."
+    whyMeTitle="Warum ich?"
+    whyMeItems={[
+      {
+        title: 'Individuelle Lösungen',
+        description:
+          'Ich gehe über den Code hinaus, um die Einzigartigkeit Ihres Projekts zu verstehen und liefere genau das, was Sie brauchen.',
+        image: '/Family.svg',
+      },
+      {
+        title: 'Schnelligkeit & Effizienz',
+        description:
+          'Ich liefere hochwertige Ergebnisse pünktlich – ohne unnötige Verzögerungen oder Kompromisse.',
+        image: '/Speed.svg',
+      },
+      {
+        title: 'Pixelgenau & responsiv',
+        description:
+          'Die von mir entwickelten Websites sehen auf jedem Gerät großartig aus und funktionieren reibungslos.',
+        image: '/PixelPerfect.svg',
+      },
+      {
+        title: 'Angenehme Zusammenarbeit',
+        description:
+          'Offen für Feedback, klare Kommunikation und Fokus auf Ergebnisse – kein Drama, nur gute Arbeit.',
+        image: '/EasyToWork.svg',
+      },
+    ]}
+  />
+  <Projects
+    title="Portfolio"
+    subtitle="Meine aktuellen Arbeiten"
+    projects={[
+      {
+        id: 1,
+        title: 'Gläser mit Cocktail',
+        image: '/weather-app.jpg',
+        tags: ['BRANDING'],
+        featured: true,
+      },
+      {
+        id: 2,
+        title: 'Hilfiger Echidna',
+        image: '/ecommerce-app.jpg',
+        tags: ['VIDEO'],
+        featured: true,
+      },
+      {
+        id: 3,
+        title: 'Branding mit Blumen',
+        image: '/salon-app.jpg',
+        tags: ['BRANDING'],
+        featured: false,
+      },
+      {
+        id: 4,
+        title: 'Mockup Flasche',
+        image: '/banking-app.jpg',
+        tags: ['MOCKUP'],
+        featured: false,
+      },
+      {
+        id: 5,
+        title: 'Mockup Flasche',
+        image: '/banking-app.jpg',
+        tags: ['MOCKUP'],
+        featured: false,
+      },
+    ]}
+  />
+  <Services
+    title="Meine Dienstleistungen"
+    subtitle="Worin ich Experte bin"
+    contactLabel="Kontakt aufnehmen"
+    services={[
+      {
+        title: 'Landingpage-Entwicklung',
+        icon: `<rect x="3" y="4" width="18" height="14" rx="2" stroke="currentColor" stroke-width="2"/>
+               <rect x="7" y="8" width="2" height="6" fill="currentColor"/>
+               <rect x="11" y="10" width="2" height="4" fill="currentColor"/>
+               <rect x="15" y="6" width="2" height="8" fill="currentColor"/>`,
+      },
+      {
+        title: 'UI/UX & Webdesign',
+        icon: `<rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="2"/>
+               <line x1="8" y1="21" x2="16" y2="21" stroke="currentColor" stroke-width="2"/>
+               <line x1="12" y1="17" x2="12" y2="21" stroke="currentColor" stroke-width="2"/>`,
+      },
+      {
+        title: 'Unternehmenswebsite',
+        icon: `<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+               <polygon points="10,8 16,12 10,16" fill="currentColor"/>`,
+      },
+      {
+        title: 'Branding & Identität',
+        icon: `<rect x="3" y="3" width="7" height="7" stroke="currentColor" stroke-width="2"/>
+               <rect x="14" y="3" width="7" height="7" stroke="currentColor" stroke-width="2"/>
+               <rect x="14" y="14" width="7" height="7" stroke="currentColor" stroke-width="2"/>
+               <rect x="3" y="14" width="7" height="7" stroke="currentColor" stroke-width="2"/>`,
+      },
+      {
+        title: 'Performance-Optimierung',
+        icon: `<path d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z" stroke="currentColor" stroke-width="2" fill="none"/>
+               <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" fill="none"/>`,
+      },
+      {
+        title: 'Website-Audit & Beratung',
+        icon: `<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" stroke="currentColor" stroke-width="2" fill="none"/>
+               <polyline points="7.5,4.21 12,6.81 16.5,4.21" stroke="currentColor" stroke-width="2"/>
+               <polyline points="7.5,19.79 7.5,14.6 3,12" stroke="currentColor" stroke-width="2"/>
+               <polyline points="21,12 16.5,14.6 16.5,19.79" stroke="currentColor" stroke-width="2"/>
+               <polyline points="12,22.81 12,17" stroke="currentColor" stroke-width="2"/>`,
+      },
+    ]}
+  />
+  <Testimonials
+    title="Kundenstimmen"
+    subtitle="Feedback von meinen Kunden"
+    testimonials={[
+      {
+        id: 1,
+        text: '„Die Zusammenarbeit mit Bohdan war eine Freude. Er hat unsere Landingpage schneller als geplant geliefert und unsere Erwartungen in Design und Performance übertroffen.“',
+        author: 'Anna Müller, Marketing Lead',
+      },
+      {
+        id: 2,
+        text: '„Bohdan ist ein echter Profi. Die Kommunikation war reibungslos und das Endprodukt hat unsere Conversion-Rate um 30% gesteigert.“',
+        author: 'Maximilian Schulz, CEO, Factual',
+      },
+      {
+        id: 3,
+        text: '„Wir brauchten eine schnelle, moderne Website für unser Startup. Bohdan hat unsere Anforderungen verstanden und ein pixelgenaues Ergebnis geliefert. Sehr zu empfehlen!“',
+        author: 'Sophie Becker, Gründerin, Matrixian',
+      },
+      {
+        id: 4,
+        text: '„Die neue Seite sieht großartig aus und funktioniert auf allen Geräten einwandfrei. Bohdans Liebe zum Detail und sein kreativer Ansatz haben den Unterschied gemacht.“',
+        author: 'Jonas Weber, Produktmanager',
+      },
+      {
+        id: 5,
+        text: '„Vom ersten Gespräch bis zum Launch war Bohdan immer ansprechbar und proaktiv. Wir werden definitiv wieder zusammenarbeiten!“',
+        author: 'Lena Hoffmann, COO',
+      },
+    ]}
+  />
+  <Pricing
+    subtitle="Preise"
+    title="Flexible Pakete, wählen Sie Ihr Paket"
+    pricingPlans={[
+      {
+        title: 'Basis',
+        description: 'Perfekt für einfache Websites / persönliche Marken',
+        price: 'Ab 299€',
+        features: [
+          'Individuelles Design basierend auf Vorlage',
+          'Bis zu 3 Inhaltsblöcke',
+          'Vollständig responsives Layout',
+          'Basis-SEO',
+          '1 Kontaktformular',
+        ],
+        delivery: '~5 Werktage',
+        highlighted: false,
+      },
+      {
+        title: 'Standard',
+        description: 'Ideal für kleine Unternehmen',
+        price: 'Ab 700€',
+        features: [
+          'Einzigartiges individuelles Design',
+          '5–7 Inhaltsblöcke',
+          'Erweitertes responsives Layout',
+          'Vollständige On-Page-SEO',
+          'Bis zu 3 Formulare oder Lead-Quizzes',
+          'Google Analytics Integration',
+        ],
+        delivery: '7–10 Werktage',
+        highlighted: true,
+      },
+      {
+        title: 'Premium',
+        description: 'Für hochkonvertierende, dynamische Landingpages',
+        price: 'Ab 1500€',
+        features: [
+          'Exklusives Design von Grund auf',
+          'Unbegrenzte Inhaltsabschnitte',
+          'Erweiterte Animationen & interaktive UI',
+          'Tiefe SEO-Strategie',
+        ],
+        delivery: 'Individuell',
+        highlighted: false,
+      },
+    ]}
+  />
+  <Contact
+    title="Kontakt"
+    subtitle="Schreiben Sie mir eine Nachricht!"
+    labels={{
+      fullName: 'Vollständiger Name',
+      emailAddress: 'E-Mail-Adresse',
+      subject: 'Betreff',
+      yourMessage: 'Ihre Nachricht',
+      sendMessage: 'Nachricht senden',
+      locationLabel: 'Standort',
+      locationValue: 'Hamburg, Deutschland (remote weltweit)',
+      thankYou: 'Danke! Ihre Nachricht wurde gesendet.',
+      nameRequired: 'Vollständiger Name ist erforderlich.',
+      nameMin: 'Der Name muss mindestens 2 Zeichen enthalten.',
+      emailRequired: 'E-Mail-Adresse ist erforderlich.',
+      emailInvalid: 'Bitte geben Sie eine gültige E-Mail-Adresse ein.',
+      messageRequired: 'Nachricht ist erforderlich.',
+      messageMin: 'Die Nachricht muss mindestens 10 Zeichen enthalten.',
+    }}
+  />
+  <Footer
+    copyright="© 2025 Bohdan Karamanets. Alle Rechte vorbehalten."
+    navigationTitle="Navigation"
+    navigation={[
+      { label: 'Über mich', href: '#about' },
+      { label: 'Projekte', href: '#projects' },
+      { label: 'Dienstleistungen', href: '#services' },
+      { label: 'Kontakt', href: '#contact' },
+    ]}
+    servicesTitle="Leistungen"
+    services={[
+      { label: 'Landingpage-Entwicklung', href: '#services' },
+      { label: 'UI/UX & Webdesign', href: '#services' },
+      { label: 'Unternehmenswebsite', href: '#services' },
+      { label: 'Branding & Identität', href: '#services' },
+    ]}
+    contactTitle="Kontakt aufnehmen"
+  />
+</Layout>

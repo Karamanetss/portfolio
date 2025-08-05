@@ -8,6 +8,7 @@ const {
   description = 'Portfolio of Bohdan Karamanets, web developer. Modern, fast, and visually striking websites for personal brands and businesses.',
   image = '/avatar.png',
   url = 'https://your-domain.com/', // замените на ваш домен
+  navLabels,
 } = Astro.props;
 ---
 
@@ -45,9 +46,9 @@ const {
     {
       Astro.url.pathname === '/privacy' ||
       Astro.url.pathname === '/terms-of-service' ? (
-        <Header minimal={true} backHref="/" />
+        <Header navLabels={navLabels} />
       ) : (
-        <Header />
+        <Header navLabels={navLabels} />
       )
     }
     <slot />

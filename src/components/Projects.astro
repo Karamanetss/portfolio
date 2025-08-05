@@ -1,41 +1,9 @@
 ---
-const projects = [
-  {
-    id: 1,
-    title: 'Glasses of Cocktail',
-    image: '/weather-app.jpg',
-    tags: ['BRANDING'],
-    featured: true,
-  },
-  {
-    id: 2,
-    title: 'Hilfiger Echidna',
-    image: '/ecommerce-app.jpg',
-    tags: ['VIDEO'],
-    featured: true,
-  },
-  {
-    id: 3,
-    title: 'Branding with Flowers',
-    image: '/salon-app.jpg',
-    tags: ['BRANDING'],
-    featured: false,
-  },
-  {
-    id: 4,
-    title: 'Mockup Bottle',
-    image: '/banking-app.jpg',
-    tags: ['MOCKUP'],
-    featured: false,
-  },
-  {
-    id: 5,
-    title: 'Mockup Bottle',
-    image: '/banking-app.jpg',
-    tags: ['MOCKUP'],
-    featured: false,
-  },
-];
+const {
+  projects = [],
+  title = 'Projects',
+  subtitle = 'My recent work',
+} = Astro.props;
 ---
 
 <section id="projects" class="py-10 bg-[#faf6f2]">
@@ -44,73 +12,93 @@ const projects = [
       <p
         class="text-3xl md:text-[36px] md:text-start text-center mb-2 text-black font-light"
       >
-        Portfolio
+        {title}
       </p>
       <h2
         class="text-4xl sm:text-5xl lg:text-6xl xl:text-[90px] md:text-start text-center mb-8 font-bold font-montserrat text-black"
       >
-        My recent work
+        {subtitle}
       </h2>
     </div>
     <div class="flex flex-col gap-4">
       <!-- First row: 2 cards -->
       <div class="flex flex-col md:flex-row gap-4 px-3">
         {
-          projects.slice(0, 2).map((project) => (
-            <div
-              class={`relative w-full overflow-hidden rounded-xl group h-[320px] sm:h-[400px] md:h-[520px] lg:h-[720px]`}
-              data-aos="fade-up"
-            >
-              <img
-                src={project.image}
-                alt={project.title}
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              />
-              <div class="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors duration-300" />
-              <div class="absolute top-4 right-4 z-10 flex gap-2">
-                {project.tags.map((tag) => (
-                  <span class="px-3 py-1 rounded-full bg-black/70 text-white text-xs font-semibold uppercase tracking-wider">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              <div class="absolute left-7 bottom-7 z-10 pointer-events-none">
-                <h3 class="font-bold font-montserrat text-white drop-shadow-lg mb-0 transform transition-all duration-500 ease-in-out opacity-0 translate-y-6 group-hover:opacity-100 group-hover:translate-y-0 text-3xl md:text-4xl">
-                  {project.title}
-                </h3>
-              </div>
-            </div>
-          ))
+          projects
+            .slice(0, 2)
+            .map(
+              (project: {
+                id: number;
+                title: string;
+                image: string;
+                tags: string[];
+                featured: boolean;
+              }) => (
+                <div
+                  class={`relative w-full overflow-hidden rounded-xl group h-[320px] sm:h-[400px] md:h-[520px] lg:h-[720px]`}
+                  data-aos="fade-up"
+                >
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div class="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors duration-300" />
+                  <div class="absolute top-4 right-4 z-10 flex gap-2">
+                    {project.tags.map((tag: string, tagIdx: number) => (
+                      <span class="px-3 py-1 rounded-full bg-black/70 text-white text-xs font-semibold uppercase tracking-wider">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <div class="absolute left-7 bottom-7 z-10 pointer-events-none">
+                    <h3 class="font-bold font-montserrat text-white drop-shadow-lg mb-0 transform transition-all duration-500 ease-in-out opacity-0 translate-y-6 group-hover:opacity-100 group-hover:translate-y-0 text-3xl md:text-4xl">
+                      {project.title}
+                    </h3>
+                  </div>
+                </div>
+              )
+            )
         }
       </div>
       <!-- Second row: 3 cards -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-3">
         {
-          projects.slice(2, 5).map((project) => (
-            <div
-              class={`relative w-full overflow-hidden rounded-xl group h-[320px] sm:h-[400px] md:h-[520px] lg:h-[550px]`}
-              data-aos="fade-up"
-            >
-              <img
-                src={project.image}
-                alt={project.title}
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              />
-              <div class="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors duration-300" />
-              <div class="absolute top-4 right-4 z-10 flex gap-2">
-                {project.tags.map((tag) => (
-                  <span class="px-3 py-1 rounded-full bg-black/70 text-white text-xs font-semibold uppercase tracking-wider">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              <div class="absolute left-7 bottom-7 z-10 pointer-events-none">
-                <h3 class="font-bold font-montserrat text-white drop-shadow-lg mb-0 transform transition-all duration-500 ease-in-out opacity-0 translate-y-6 group-hover:opacity-100 group-hover:translate-y-0 text-2xl md:text-3xl">
-                  {project.title}
-                </h3>
-              </div>
-            </div>
-          ))
+          projects
+            .slice(2, 5)
+            .map(
+              (project: {
+                id: number;
+                title: string;
+                image: string;
+                tags: string[];
+                featured: boolean;
+              }) => (
+                <div
+                  class={`relative w-full overflow-hidden rounded-xl group h-[320px] sm:h-[400px] md:h-[520px] lg:h-[550px]`}
+                  data-aos="fade-up"
+                >
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div class="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors duration-300" />
+                  <div class="absolute top-4 right-4 z-10 flex gap-2">
+                    {project.tags.map((tag: string, tagIdx: number) => (
+                      <span class="px-3 py-1 rounded-full bg-black/70 text-white text-xs font-semibold uppercase tracking-wider">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <div class="absolute left-7 bottom-7 z-10 pointer-events-none">
+                    <h3 class="font-bold font-montserrat text-white drop-shadow-lg mb-0 transform transition-all duration-500 ease-in-out opacity-0 translate-y-6 group-hover:opacity-100 group-hover:translate-y-0 text-2xl md:text-3xl">
+                      {project.title}
+                    </h3>
+                  </div>
+                </div>
+              )
+            )
         }
       </div>
     </div>

@@ -1,51 +1,12 @@
 ---
-const whyMeItems = [
-  {
-    title: 'Tailored solutions',
-    description:
-      'I go beyond the code to understand the uniqueness of your project and deliver exactly what you need.',
-    image: '/Family.svg',
-  },
-  {
-    title: 'Speed and efficiency',
-    description:
-      'I deliver high-quality results on time — without unnecessary delays or compromises.',
-    image: '/Speed.svg',
-  },
-  {
-    title: 'Pixel-perfect & responsive',
-    description:
-      'Websites I build look great and work smoothly on any screen or device.',
-    image: '/PixelPerfect.svg',
-  },
-  {
-    title: 'Easy to work with',
-    description:
-      'Open to feedback, clear in communication, and focused on results — no drama, just good work.',
-    image: '/EasyToWork.svg',
-  },
-];
+const {
+  title,
+  location,
+  description,
+  whyMeItems = [],
+  whyMeTitle,
+} = Astro.props;
 ---
-
-<style>
-  .glass-effect {
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    perspective: 1000px;
-  }
-
-  .glass-blur {
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-  }
-
-  @media (max-width: 768px) {
-    .glass-blur {
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
-    }
-  }
-</style>
 
 <section class="relative bg-black py-10 lg:py-20 overflow-hidden" id="about">
   <div class="max-w-7xl mx-auto px-6">
@@ -63,21 +24,17 @@ const whyMeItems = [
         <h2
           class="font-montserrat text-4xl sm:text-5xl lg:text-6xl xl:text-[90px] font-bold text-black mb-3 sm:mb-5 text-center lg:text-left"
         >
-          About Me
+          {title}
         </h2>
         <div
           class="text-lg sm:text-xl lg:text-2xl mb-3 sm:mb-4 text-center lg:text-left"
         >
-          Based in Germany
+          {location}
         </div>
         <p
           class="text-base sm:text-lg lg:text-xl font-light max-w-full lg:max-w-[630px] text-center lg:text-left"
         >
-          I'm Bohdan, a web developer based in Germany, focused on building
-          modern, fast, and visually striking websites. I help personal brands
-          and businesses stand out online with clean code, smart layouts, and
-          bold design. Whether it's a landing page or a custom solution — I turn
-          ideas into smooth digital experiences.
+          {description}
         </p>
       </div>
       <div
@@ -127,38 +84,43 @@ const whyMeItems = [
         <h2
           class="font-montserrat text-4xl sm:text-6xl md:text-[90px] font-bold text-white uppercase text-center sm:text-left"
         >
-          Why Me?
+          {whyMeTitle}
         </h2>
       </div>
 
       <div class="space-y-4 md:space-y-6">
         {
-          whyMeItems.map((item, idx) => (
-            <div
-              class="flex flex-col lg:flex-row items-center text-white gap-4 md:gap-6"
-              data-aos="fade-up"
-              data-aos-delay={200 + idx * 100}
-            >
-              <div class="relative p-[1px] bg-gradient-to-b from-white/20 via-white/10 to-white/5 rounded-2xl w-full lg:flex-1 lg:max-w-[690px] transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
-                <div class="bg-black/75 backdrop-blur-sm rounded-2xl px-4 py-4 md:px-6 md:py-6 border border-white/15 will-change-transform">
-                  <h3 class="text-xl sm:text-2xl lg:text-[32px] font-montserrat font-semibold mb-2 text-center lg:text-left">
-                    {item.title}
-                  </h3>
-                  <p class="text-gray-300 font-light text-lg sm:text-xl text-center lg:text-left">
-                    {item.description}
-                  </p>
+          whyMeItems.map(
+            (
+              item: { title: string; description: string; image: string },
+              idx: number
+            ) => (
+              <div
+                class="flex flex-col lg:flex-row items-center text-white gap-4 md:gap-6"
+                data-aos="fade-up"
+                data-aos-delay={200 + idx * 100}
+              >
+                <div class="relative p-[1px] bg-gradient-to-b from-white/20 via-white/10 to-white/5 rounded-2xl w-full lg:flex-1 lg:max-w-[690px] transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
+                  <div class="bg-black/75 backdrop-blur-sm rounded-2xl px-4 py-4 md:px-6 md:py-6 border border-white/15 will-change-transform">
+                    <h3 class="text-xl sm:text-2xl lg:text-[32px] font-montserrat font-semibold mb-2 text-center lg:text-left">
+                      {item.title}
+                    </h3>
+                    <p class="text-gray-300 font-light text-lg sm:text-xl text-center lg:text-left">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+                <div class="flex-shrink-0 flex justify-center">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    class="w-12 h-12 sm:w-16 sm:h-16 lg:w-[74px] lg:h-[74px]"
+                    loading="eager"
+                  />
                 </div>
               </div>
-              <div class="flex-shrink-0 flex justify-center">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  class="w-12 h-12 sm:w-16 sm:h-16 lg:w-[74px] lg:h-[74px]"
-                  loading="eager"
-                />
-              </div>
-            </div>
-          ))
+            )
+          )
         }
       </div>
     </div>
